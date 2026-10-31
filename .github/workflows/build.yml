@@ -12,11 +12,6 @@ jobs:
     - name: Checkout Repository
       uses: actions/checkout@v4
 
-    - name: Verify Defconfig Exists
-      run: |
-        ls -la configs/
-        test -f configs/kolibri_hacker_defconfig || (echo "Defconfig not found!" && exit 1)
-
     - name: Install Dependencies
       run: |
         sudo apt-get update
@@ -32,8 +27,6 @@ jobs:
         cp configs/kolibri_hacker_defconfig buildroot-2024.02.1/configs/
         cd buildroot-2024.02.1
         make kolibri_hacker_defconfig
-        mkdir -p output
-        touch output/.br-external.mk
         make -j$(nproc)
 
     - name: Upload OS Image Artifact
