@@ -3,7 +3,7 @@ name: Build Kolibri-Hacker OS
 on:
   push:
     branches: [ "main" ]
-  workflow_dispatch: # به شما اجازه می‌دهد دستی هم اجرا کنید
+  workflow_dispatch:
 
 jobs:
   build:
@@ -15,7 +15,7 @@ jobs:
     - name: Install Dependencies
       run: |
         sudo apt-get update
-        sudo apt-get install -y build-essential git wget cpio unzip rsync bc libncurses5-dev libssl-dev
+        sudo apt-get install -y build-essential git wget cpio unzip rsync bc libncurses-dev libssl-dev
 
     - name: Download and Extract Buildroot
       run: |
@@ -27,7 +27,7 @@ jobs:
         cp configs/kolibri_hacker_defconfig buildroot-2024.02.1/configs/
         cd buildroot-2024.02.1
         make kolibri_hacker_defconfig
-        make -j$(nproc) # استفاده از تمام هسته‌های پردازنده سرور برای سرعت بیشتر
+        make -j$(nproc)
 
     - name: Upload OS Image Artifact
       uses: actions/upload-artifact@v4
