@@ -1,0 +1,45 @@
+# =========================================================
+# Kolibri-Hacker OS: Minimal Linux for TUI & Hacking
+# Architecture: x86_64
+# =========================================================
+
+# Architecture
+BR2_x86_64=y
+BR2_TOOLCHAIN_BUILDROOT_GLIBC=y
+
+# Kernel
+BR2_LINUX_KERNEL=y
+BR2_LINUX_KERNEL_DEFCONFIG="x86_64_defconfig"
+# فعال‌سازی قابلیت‌های شبکه در هسته
+BR2_LINUX_KERNEL_CONFIG_FRAGMENT_FILES=""
+
+# System Settings
+BR2_TARGET_GENERIC_HOSTNAME="kolibri-hacker"
+BR2_TARGET_GENERIC_ISSUE="Welcome to Kolibri-Hacker OS (TUI Edition)"
+BR2_TARGET_ROOTFS_EXT2=y
+BR2_TARGET_ROOTFS_EXT2_SIZE="100M" # حجم کم برای بهینه‌سازی
+BR2_TARGET_ROOTFS_TAR=y
+
+# Base System & TUI
+BR2_PACKAGE_BUSYBOX=y
+BR2_PACKAGE_BASH=y
+BR2_PACKAGE_NCURSES=y # ضروری برای رابط‌های TUI
+BR2_PACKAGE_TMUX=y    # مدیر پنجره TUI
+BR2_PACKAGE_NANO=y    # ویرایشگر متن ساده
+
+# Networking & Hacking Tools
+BR2_PACKAGE_NMAP=y
+BR2_PACKAGE_TCPDUMP=y
+BR2_PACKAGE_NETCAT_OPENBSD=y # نسخه مدرن Netcat
+BR2_PACKAGE_AIRCRACK_NG=y
+BR2_PACKAGE_OPENSSH=y
+BR2_PACKAGE_CURL=y
+BR2_PACKAGE_WGET=y
+
+# Python (برای اسکریپت‌های هکری)
+BR2_PACKAGE_PYTHON3=y
+BR2_PACKAGE_PYTHON3_PIP=y
+
+# Utilities
+BR2_PACKAGE_HTOP=y
+BR2_PACKAGE_NTP=y
